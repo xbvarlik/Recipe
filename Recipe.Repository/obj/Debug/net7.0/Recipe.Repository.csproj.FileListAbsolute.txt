@@ -1,0 +1,14 @@
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.Repository\bin\Debug\net7.0\Recipe.Repository.deps.json
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.Repository\bin\Debug\net7.0\Recipe.Repository.runtimeconfig.json
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.Repository\bin\Debug\net7.0\Recipe.Repository.dll
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.Repository\bin\Debug\net7.0\Recipe.Repository.pdb
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.Repository\obj\Debug\net7.0\Recipe.Repository.csproj.AssemblyReference.cache
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.Repository\obj\Debug\net7.0\Recipe.Repository.GeneratedMSBuildEditorConfig.editorconfig
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.Repository\obj\Debug\net7.0\Recipe.Repository.AssemblyInfoInputs.cache
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.Repository\obj\Debug\net7.0\Recipe.Repository.AssemblyInfo.cs
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.Repository\obj\Debug\net7.0\Recipe.Repository.csproj.CoreCompileInputs.cache
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.Repository\obj\Debug\net7.0\Recipe.Repository.dll
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.Repository\obj\Debug\net7.0\refint\Recipe.Repository.dll
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.Repository\obj\Debug\net7.0\Recipe.Repository.pdb
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.Repository\obj\Debug\net7.0\Recipe.Repository.genruntimeconfig.cache
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.Repository\obj\Debug\net7.0\ref\Recipe.Repository.dll
