@@ -8,7 +8,7 @@ public class Recipe : BaseEntity
     
     public string RecipeDetails { get; set; } = null!;
     
-    public byte[]? Image { get; set; }
+    public string? Image { get; set; }
     
     public int UserId { get; set; }
     
