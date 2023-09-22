@@ -45,8 +45,7 @@ public class GenericService<TEntity, TReadDto, TCreateDto, TUpdateDto>
         var entity = await _context.Set<TEntity>().FindAsync(id);
         if (entity == null) throw new KeyNotFoundException($"Entity not found with id {id}");
         
-        _mapper.ToEntity(dto, entity);
-        _context.Set<TEntity>().Update(entity);
+        entity = _mapper.ToEntity(dto, entity);
         await _context.SaveChangesAsync();
         
         return _mapper.ToDto(entity);
