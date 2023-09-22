@@ -2,7 +2,7 @@
 
 ## TODO
 
-- Change every attribute of every UpdateDto to nullable
+- Introduce Steps attribute to the Recipe entity
 
 ## Research 
 
