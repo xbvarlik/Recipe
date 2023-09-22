@@ -11,7 +11,9 @@ public class RecipeCreateDto
     
     public string? Image { get; set; }
     
+    public int UserId { get; set; } 
+    
     public int CategoryId { get; set; }
     
-    public ICollection<RecipeIngredientReadDto>? RecipeIngredients { get; set; } 
+    public ICollection<RecipeIngredientCreateDto>? RecipeIngredients { get; set; } 
 }
