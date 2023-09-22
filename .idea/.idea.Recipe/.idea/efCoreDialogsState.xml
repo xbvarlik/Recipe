@@ -7,6 +7,7 @@
         <entry key="Common:cb5e3785-d3b5-4716-970d-60eb329222c8:dbContext" value="Recipe.Repository.AppDbContext" />
         <entry key="Common:noBuild" value="false" />
         <entry key="Common:outputFolder" value="Migrations" />
+        <entry key="Common:useDefaultConnection" value="true" />
       </map>
     </option>
   </component>
