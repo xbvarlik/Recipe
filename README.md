@@ -2,6 +2,8 @@
 
 ## TODO
 
+- Change every attribute of every UpdateDto to nullable
+
 ## Research 
 
 ### Image Storage
