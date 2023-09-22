@@ -12,5 +12,4 @@ public class RecipeUpdateDto
     
     public int? CategoryId { get; set; }
     
-    public ICollection<StepCreateDto>? Steps { get; set; } 
 }

@@ -22,7 +22,6 @@ public class RecipeMapper : IBaseMapper<RecipeEntity, RecipeReadDto, RecipeCreat
         entity.Name = dto.Name ?? entity.Name;
         entity.Image = dto.Image ?? entity.Image;
         entity.CategoryId = dto.CategoryId ?? entity.CategoryId;
-        entity.Steps = dto.Steps?.Select(s => new StepMapper().ToEntity(s)).ToList();
         return entity;
     }
 

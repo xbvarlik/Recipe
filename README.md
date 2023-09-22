@@ -2,8 +2,7 @@
 
 ## TODO
 
-- Introduce Steps attribute to the Recipe entity
-- Take a look at RecipeIngredient Update in RecipeMapper
+- Take a look at the update mappers
 
 ## Research 
 
