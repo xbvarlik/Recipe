@@ -1,7 +1,4 @@
 ﻿using Recipe.API.DTOs.CategoryDTOs;
-using Recipe.API.DTOs.IngredientDTOs;
-using Recipe.API.DTOs.RecipeDTOs;
-using Recipe.API.DTOs.RecipeIngredientDTOs;
 using Recipe.Repository.Entities;
 
 namespace Recipe.API.Mappings;

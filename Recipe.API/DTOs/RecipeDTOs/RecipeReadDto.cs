@@ -1,5 +1,5 @@
-﻿using Recipe.API.DTOs.RecipeIngredientDTOs;
-using Recipe.API.DTOs.RecipePointAndCommentDTOs;
+﻿using Recipe.API.DTOs.RecipePointAndCommentDTOs;
+using Recipe.API.DTOs.StepDTOs;
 
 namespace Recipe.API.DTOs.RecipeDTOs;
 
@@ -17,7 +17,7 @@ public class RecipeReadDto
     
     public int CategoryId { get; set; }
     
-    public ICollection<RecipeIngredientReadDto>? RecipeIngredients { get; set; } 
+    public ICollection<StepReadDto>? Steps { get; set; }  
     
     public ICollection<RecipePointsAndCommentsReadDto>? RecipePointsAndComments { get; set; } 
 }

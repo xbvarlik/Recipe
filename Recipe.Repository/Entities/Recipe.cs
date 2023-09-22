@@ -6,8 +6,6 @@ public class Recipe : BaseEntity
 {
     public string Name { get; set; } = null!;
     
-    public string RecipeDetails { get; set; } = null!;
-    
     public string? Image { get; set; }
     
     public int UserId { get; set; }
@@ -20,7 +18,7 @@ public class Recipe : BaseEntity
     
     public virtual ICollection<FavoriteRecipes>? FavoriteRecipes { get; set; }
     
-    public virtual ICollection<RecipeIngredient>? RecipeIngredients { get; set; } 
+    public virtual ICollection<Step>? Steps { get; set; }
     
     public virtual ICollection<RecipePointsAndComments>? RecipePointsAndComments { get; set; } 
     

@@ -9,7 +9,7 @@ public class AppDbContext : DbContext
     public DbSet<Entities.Recipe> Recipes { get; set; } = null!;
     public DbSet<Ingredient> Ingredients { get; set; } = null!;
     public DbSet<Category> Categories { get; set; } = null!;
-    public DbSet<RecipeIngredient> RecipeIngredients { get; set; } = null!;
+    public DbSet<Step> Steps { get; set; } = null!;
     public DbSet<FavoriteRecipes> FavoriteRecipes { get; set; } = null!;
     public RecipePointsAndComments RecipePointsAndComments { get; set; } = null!;
     

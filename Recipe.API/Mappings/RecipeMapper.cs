@@ -1,8 +1,4 @@
-﻿using Recipe.API.DTOs.IngredientDTOs;
-using Recipe.API.DTOs.RecipeDTOs;
-using Recipe.API.DTOs.RecipeIngredientDTOs;
-using Recipe.API.DTOs.RecipePointAndCommentDTOs;
-using Recipe.Repository.Entities;
+﻿using Recipe.API.DTOs.RecipeDTOs;
 using RecipeEntity = Recipe.Repository.Entities.Recipe;
 
 namespace Recipe.API.Mappings;
@@ -14,11 +10,9 @@ public class RecipeMapper : IBaseMapper<RecipeEntity, RecipeReadDto, RecipeCreat
         return new RecipeEntity
         {
             Name = dto.Name,
-            RecipeDetails = dto.RecipeDetails,
             Image = dto.Image,
             UserId = dto.UserId,
             CategoryId = dto.CategoryId,
-            RecipeIngredients = dto.RecipeIngredients?.Select(i => new RecipeIngredientMapper().ToEntity(i)).ToList()
         };
     }
 
@@ -26,14 +20,9 @@ public class RecipeMapper : IBaseMapper<RecipeEntity, RecipeReadDto, RecipeCreat
     {
         
         entity.Name = dto.Name ?? entity.Name;
-        entity.RecipeDetails = dto.RecipeDetails ?? entity.RecipeDetails; 
         entity.Image = dto.Image ?? entity.Image;
         entity.CategoryId = dto.CategoryId ?? entity.CategoryId;
-        entity.RecipeIngredients = dto.RecipeIngredients?.Select(i => new RecipeIngredient
-        {
-            Amount = i.Amount,
-            IngredientId = i.IngredientId,
-        }).ToList();
+        entity.Steps = dto.Steps?.Select(s => new StepMapper().ToEntity(s)).ToList();
         return entity;
     }
 
@@ -43,28 +32,12 @@ public class RecipeMapper : IBaseMapper<RecipeEntity, RecipeReadDto, RecipeCreat
         {
             Id = entity.Id,
             Name = entity.Name,
-            RecipeDetails = entity.RecipeDetails,
             Image = entity.Image,
             UserId = entity.UserId,
             CategoryId = entity.CategoryId,
-            RecipeIngredients = entity.RecipeIngredients?.Select(i => new RecipeIngredientReadDto
-            {
-                Id = i.Id,
-                Amount = i.Amount,
-                Ingredient = new IngredientReadDto
-                {
-                    Id = i.Ingredient.Id,
-                    Name = i.Ingredient.Name
-                }
-            }).ToList(),
-            RecipePointsAndComments = entity.RecipePointsAndComments?.Select(p => new RecipePointsAndCommentsReadDto
-            {
-                Id = p.Id,
-                Points = p.Points,
-                Comment = p.Comment,
-                UserId = p.UserId,
-                RecipeId = p.RecipeId
-            }).ToList()
+            Steps = entity.Steps?.Select(s => new StepMapper().ToDto(s)).ToList(),
+            RecipePointsAndComments = entity.RecipePointsAndComments?.Select(p => 
+                new RecipePointsAndCommentsMapper().ToDto(p)).ToList()
         };
     }
 }
