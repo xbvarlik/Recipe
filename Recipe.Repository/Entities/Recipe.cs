@@ -12,18 +12,16 @@ public class Recipe : BaseEntity
     
     public int UserId { get; set; }
     
-    public virtual User User { get; set; } = null!;
+    public virtual User? User { get; set; } 
     
     public int CategoryId { get; set; }
     
-    public virtual Category Category { get; set; } = null!;
+    public virtual Category? Category { get; set; } 
     
-    [DeleteBehavior(DeleteBehavior.Cascade)]
-    public virtual ICollection<FavoriteRecipes?> FavoriteRecipes { get; set; } = null!;
+    public virtual ICollection<FavoriteRecipes>? FavoriteRecipes { get; set; }
     
-    public virtual ICollection<RecipeIngredient?> RecipeIngredients { get; set; } = null!;
+    public virtual ICollection<RecipeIngredient>? RecipeIngredients { get; set; } 
     
-    [DeleteBehavior(DeleteBehavior.Cascade)]
-    public virtual ICollection<RecipePointsAndComments?> RecipePointsAndComments { get; set; } = null!;
+    public virtual ICollection<RecipePointsAndComments>? RecipePointsAndComments { get; set; } 
     
 }

@@ -12,9 +12,8 @@ public class RecipePointsAndComments : BaseEntity
     
     public int RecipeId { get; set; }
     
-    [DeleteBehavior(DeleteBehavior.Cascade)]
-    public virtual User User { get; set; } = null!;
-
-    [DeleteBehavior(DeleteBehavior.Cascade)]
-    public virtual Recipe Recipe { get; set; } = null!;
+    [DeleteBehavior(DeleteBehavior.NoAction)]
+    public virtual User? User { get; set; } 
+    
+    public virtual Recipe? Recipe { get; set; }
 }

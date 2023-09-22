@@ -12,7 +12,7 @@ using Recipe.Repository;
 namespace Recipe.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230921145606_Initial")]
+    [Migration("20230922082745_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -281,7 +281,7 @@ namespace Recipe.Repository.Migrations
                     b.HasOne("Recipe.Repository.Entities.User", "User")
                         .WithMany("FavoriteRecipes")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Recipe");
@@ -311,9 +311,9 @@ namespace Recipe.Repository.Migrations
             modelBuilder.Entity("Recipe.Repository.Entities.RecipeIngredient", b =>
                 {
                     b.HasOne("Recipe.Repository.Entities.Ingredient", "Ingredient")
-                        .WithMany()
+                        .WithMany("RecipeIngredients")
                         .HasForeignKey("IngredientId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Recipe.Repository.Entities.Recipe", "Recipe")
@@ -338,7 +338,7 @@ namespace Recipe.Repository.Migrations
                     b.HasOne("Recipe.Repository.Entities.User", "User")
                         .WithMany("RecipePointsAndComments")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Recipe");
@@ -349,6 +349,11 @@ namespace Recipe.Repository.Migrations
             modelBuilder.Entity("Recipe.Repository.Entities.Category", b =>
                 {
                     b.Navigation("Recipes");
+                });
+
+            modelBuilder.Entity("Recipe.Repository.Entities.Ingredient", b =>
+                {
+                    b.Navigation("RecipeIngredients");
                 });
 
             modelBuilder.Entity("Recipe.Repository.Entities.Recipe", b =>

@@ -16,12 +16,10 @@ public class User : BaseEntity
     
     public bool Gender { get; set; }
     
-    [DeleteBehavior(DeleteBehavior.Cascade)]
-    public virtual ICollection<FavoriteRecipes?> FavoriteRecipes { get; set; } = null!;
+    public virtual ICollection<FavoriteRecipes>? FavoriteRecipes { get; set; } 
     
-    [DeleteBehavior(DeleteBehavior.Cascade)]
-    public virtual ICollection<RecipePointsAndComments?> RecipePointsAndComments { get; set; } = null!;
+    public virtual ICollection<RecipePointsAndComments>? RecipePointsAndComments { get; set; }
 
-    public virtual ICollection<Recipe?> Recipes { get; set; } = null!;
+    public virtual ICollection<Recipe>? Recipes { get; set; } 
     
 }

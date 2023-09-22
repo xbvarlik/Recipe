@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace Recipe.Repository.Entities;
+﻿namespace Recipe.Repository.Entities;
 
 public class BaseEntity
 {
