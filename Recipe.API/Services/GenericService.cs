@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Recipe.API.Mappings;
 using Recipe.Repository;
+using Recipe.Repository.Entities;
 
 namespace Recipe.API.Services;
 
 public class GenericService<TEntity, TReadDto, TCreateDto, TUpdateDto> 
-    where TEntity : class 
+    where TEntity : BaseEntity 
     where TReadDto : class 
     where TCreateDto : class 
     where TUpdateDto : class
@@ -26,7 +27,7 @@ public class GenericService<TEntity, TReadDto, TCreateDto, TUpdateDto>
     
     public virtual async Task<TEntity> GetByIdAsync(int id)
     {
-        var entity = await _context.Set<TEntity>().FindAsync(id);
+        var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(x => x.Id == id);
         if (entity == null) throw new KeyNotFoundException($"Entity not found with: id {id}");
         return entity;
     }
@@ -39,20 +40,22 @@ public class GenericService<TEntity, TReadDto, TCreateDto, TUpdateDto>
         return _mapper.ToDto(entity);
     }
     
-    public virtual async Task<TReadDto> UpdateAsync(int id, TUpdateDto dto)
+    public virtual async Task UpdateAsync(int id, TUpdateDto dto)
     {
-        var entity = await _context.Set<TEntity>().FindAsync(id);
+        var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(x => x.Id == id);
+        
         if (entity == null) throw new KeyNotFoundException($"Entity not found with id {id}");
         
         entity = _mapper.ToEntity(dto, entity);
+        
+        _context.Set<TEntity>().Update(entity);
         await _context.SaveChangesAsync();
         
-        return _mapper.ToDto(entity);
     }
     
     public virtual async Task DeleteAsync(int id)
     {
-        var entity = await _context.Set<TEntity>().FindAsync(id);
+        var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(x => x.Id == id);
         if (entity == null) throw new KeyNotFoundException($"Entity not found with id {id}");
         
         _context.Set<TEntity>().Remove(entity);
