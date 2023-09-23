@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Recipe.API;
 using Recipe.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,9 @@ builder.Services.AddDbContext<AppDbContext>(x =>
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
 
 });
+
+builder.Services.AddServices();
+builder.Services.AddMapping();
 
 var app = builder.Build();
 
