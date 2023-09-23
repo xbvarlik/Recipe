@@ -19,17 +19,16 @@ public class GenericService<TEntity, TReadDto, TCreateDto, TUpdateDto>
         _mapper = mapper;
     }
     
-    public virtual async Task<IEnumerable<TReadDto>> GetAllAsync()
+    public virtual async Task<IEnumerable<TEntity>> GetAllAsync(string? filter = null)
     {
-        var entities = await _context.Set<TEntity>().AsNoTracking().ToListAsync();
-        return entities.Select(entity => _mapper.ToDto(entity));
+        return await _context.Set<TEntity>().AsNoTracking().ToListAsync();
     }
     
-    public virtual async Task<TReadDto> GetByIdAsync(int id)
+    public virtual async Task<TEntity> GetByIdAsync(int id)
     {
         var entity = await _context.Set<TEntity>().FindAsync(id);
-        if (entity == null) throw new KeyNotFoundException($"Entity not found with id {id}");
-        return _mapper.ToDto(entity);
+        if (entity == null) throw new KeyNotFoundException($"Entity not found with: id {id}");
+        return entity;
     }
     
     public virtual async Task<TReadDto> CreateAsync(TCreateDto dto)
