@@ -11,7 +11,7 @@ public class RecipeReadDto
     
     public string RecipeDetails { get; set; } = null!;
     
-    public string? Image { get; set; }
+    public byte[]? Image { get; set; }
     
     public int UserId { get; set; }
     

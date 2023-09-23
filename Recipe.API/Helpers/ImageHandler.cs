@@ -2,8 +2,10 @@
 
 public static class ImageHandler
 {
-    public static string SaveImageToLocalStorage(byte[] byteImage, string path)
+    public static string? SaveImageToLocalStorage(byte[]? byteImage, string path)
     {
+        if (byteImage == null) return null;
+        
         // Converting image to base64 string.
         var base64Image = Convert.ToBase64String(byteImage);
         var base64ImageArray = base64Image.Split(',');
@@ -19,5 +21,13 @@ public static class ImageHandler
         File.WriteAllBytes(imagePath, bytes);
         
         return imageName;
+    }
+    
+    public static byte[]? ReadImageFromLocalStorage(string? imageName, string path)
+    {
+        if (imageName == null) return null;
+
+        var imagePath = Path.Combine(path, imageName);
+        return File.ReadAllBytes(imagePath);
     }
 }

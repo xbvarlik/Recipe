@@ -1,4 +1,5 @@
 ﻿using Recipe.API.DTOs.RecipeDTOs;
+using Recipe.API.Helpers;
 using RecipeEntity = Recipe.Repository.Entities.Recipe;
 
 namespace Recipe.API.Mappings;
@@ -10,7 +11,7 @@ public class RecipeMapper : IBaseMapper<RecipeEntity, RecipeReadDto, RecipeCreat
         return new RecipeEntity
         {
             Name = dto.Name,
-            Image = dto.Image,
+            Image = ImageHandler.SaveImageToLocalStorage(dto.Image, Constants.RecipeImageFolder),
             UserId = dto.UserId,
             CategoryId = dto.CategoryId,
         };
@@ -20,7 +21,8 @@ public class RecipeMapper : IBaseMapper<RecipeEntity, RecipeReadDto, RecipeCreat
     {
         
         entity.Name = dto.Name ?? entity.Name;
-        entity.Image = dto.Image ?? entity.Image;
+        entity.Image = dto.Image == null ? 
+            entity.Image : ImageHandler.SaveImageToLocalStorage(dto.Image, Constants.RecipeImageFolder);
         entity.CategoryId = dto.CategoryId ?? entity.CategoryId;
         return entity;
     }
@@ -31,7 +33,7 @@ public class RecipeMapper : IBaseMapper<RecipeEntity, RecipeReadDto, RecipeCreat
         {
             Id = entity.Id,
             Name = entity.Name,
-            Image = entity.Image,
+            Image = ImageHandler.ReadImageFromLocalStorage(entity.Image, Constants.RecipeImageFolder),
             UserId = entity.UserId,
             CategoryId = entity.CategoryId,
             Steps = entity.Steps?.Select(s => new StepMapper().ToDto(s)).ToList(),

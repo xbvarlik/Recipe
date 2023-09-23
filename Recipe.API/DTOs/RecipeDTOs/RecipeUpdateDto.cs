@@ -8,7 +8,7 @@ public class RecipeUpdateDto
 
     public string? RecipeDetails { get; set; }
 
-    public string? Image { get; set; }
+    public byte[]? Image { get; set; }
     
     public int? CategoryId { get; set; }
     
