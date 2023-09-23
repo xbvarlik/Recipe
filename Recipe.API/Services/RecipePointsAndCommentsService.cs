@@ -7,7 +7,7 @@ namespace Recipe.API.Services;
 
 public class RecipePointsAndCommentsService : GenericService<RecipePointsAndComments, RecipePointsAndCommentsReadDto, RecipePointsAndCommentsCreateDto, RecipePointsAndCommentsUpdateDto>
 {
-    public RecipePointsAndCommentsService(AppDbContext context, IBaseMapper<RecipePointsAndComments, RecipePointsAndCommentsReadDto, RecipePointsAndCommentsCreateDto, RecipePointsAndCommentsUpdateDto> mapper) : base(context, mapper)
+    public RecipePointsAndCommentsService(AppDbContext context, RecipePointsAndCommentsMapper mapper) : base(context, mapper)
     {
     }
 }

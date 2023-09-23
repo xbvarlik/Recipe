@@ -10,7 +10,7 @@ namespace Recipe.API.Services;
 public class RecipeService : GenericService<RecipeEntity, RecipeReadDto, RecipeCreateDto, RecipeUpdateDto>
 {
     private readonly AppDbContext _context;
-    public RecipeService(AppDbContext context, IBaseMapper<RecipeEntity, RecipeReadDto, RecipeCreateDto, RecipeUpdateDto> mapper) : base(context, mapper)
+    public RecipeService(AppDbContext context, RecipeMapper mapper) : base(context, mapper)
     {
         _context = context;
     }

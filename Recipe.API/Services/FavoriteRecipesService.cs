@@ -7,7 +7,7 @@ namespace Recipe.API.Services;
 
 public class FavoriteRecipesService : GenericService<FavoriteRecipes, FavoriteRecipesReadDto, FavoriteRecipesCreateDto, FavoriteRecipesUpdateDto>
 {
-    public FavoriteRecipesService(AppDbContext context, IBaseMapper<FavoriteRecipes, FavoriteRecipesReadDto, FavoriteRecipesCreateDto, FavoriteRecipesUpdateDto> mapper) : base(context, mapper)
+    public FavoriteRecipesService(AppDbContext context, FavoriteRecipesMapper mapper) : base(context, mapper)
     {
     }
 }

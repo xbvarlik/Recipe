@@ -37,7 +37,7 @@ public class StepMapper : IBaseMapper<Step, StepReadDto, StepCreateDto, StepUpda
             Description = entity.Description,
             RecipeId = entity.RecipeId,
             IngredientId = entity.IngredientId,
-            Ingredient = new IngredientMapper().ToDto(entity.Ingredient)
+            Ingredient = new IngredientMapper().ToDto(entity.Ingredient!)
         };
     }
 }

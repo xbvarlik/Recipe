@@ -9,7 +9,7 @@ namespace Recipe.API.Services;
 public class UserService : GenericService<User, UserReadDto, UserCreateDto, UserUpdateDto>
 {
     private readonly AppDbContext _context;
-    public UserService(AppDbContext context, IBaseMapper<User, UserReadDto, UserCreateDto, UserUpdateDto> mapper) : base(context, mapper)
+    public UserService(AppDbContext context, UserMapper mapper) : base(context, mapper)
     {
         _context = context;
     }

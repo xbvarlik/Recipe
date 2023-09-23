@@ -10,7 +10,7 @@ public class StepService : GenericService<Step, StepReadDto, StepCreateDto, Step
 {
     private readonly AppDbContext _context;
     
-    public StepService(AppDbContext context, IBaseMapper<Step, StepReadDto, StepCreateDto, StepUpdateDto> mapper) : base(context, mapper)
+    public StepService(AppDbContext context, StepMapper mapper) : base(context, mapper)
     {
         _context = context;
     }

@@ -9,7 +9,7 @@ namespace Recipe.API.Services;
 public class CategoryService : GenericService<Category, CategoryReadDto, CategoryCreateDto, CategoryUpdateDto>
 {
     private readonly AppDbContext _context;
-    public CategoryService(AppDbContext context, IBaseMapper<Category, CategoryReadDto, CategoryCreateDto, CategoryUpdateDto> mapper) : base(context, mapper)
+    public CategoryService(AppDbContext context, CategoryMapper mapper) : base(context, mapper)
     {
         _context = context;
     }

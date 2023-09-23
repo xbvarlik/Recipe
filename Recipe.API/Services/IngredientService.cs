@@ -7,7 +7,7 @@ namespace Recipe.API.Services;
 
 public class IngredientService : GenericService<Ingredient, IngredientReadDto, IngredientCreateDto, IngredientUpdateDto>
 {
-    public IngredientService(AppDbContext context, IBaseMapper<Ingredient, IngredientReadDto, IngredientCreateDto, IngredientUpdateDto> mapper) : base(context, mapper)
+    public IngredientService(AppDbContext context, IngredientMapper mapper) : base(context, mapper)
     {
     }
 }
