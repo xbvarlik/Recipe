@@ -23,6 +23,7 @@ public class RecipeService : GenericService<RecipeEntity, RecipeReadDto, RecipeC
                 .Include(x => x.Steps)!
                 .ThenInclude(y => y.Ingredient)
                 .Include(x => x.RecipePointsAndComments)
+                .OrderByDescending(x => x.UpdatedAt)
                 .ToListAsync();
         }
         
@@ -30,6 +31,7 @@ public class RecipeService : GenericService<RecipeEntity, RecipeReadDto, RecipeC
             .Include(x => x.Steps)!
             .ThenInclude(y => y.Ingredient)
             .Include(x => x.RecipePointsAndComments)
+            .OrderByDescending(x => x.UpdatedAt)
             .ToListAsync();
     }
 
