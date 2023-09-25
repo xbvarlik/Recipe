@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using Recipe.Repository.Entities;
 
 namespace Recipe.Repository;
@@ -73,4 +74,20 @@ public class AppDbContext : DbContext
         return base.SaveChangesAsync(cancellationToken);
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+        {
+            var isDeletedProperty = entityType.FindProperty("IsDeleted");
+            
+            if (isDeletedProperty == null || isDeletedProperty.ClrType != typeof(bool)) continue;
+            
+            var parameter = Expression.Parameter(entityType.ClrType);
+            var prop = Expression.PropertyOrField(parameter, "IsDeleted");
+            var filter = Expression.Lambda(Expression.Not(prop), parameter);
+            
+            modelBuilder.Entity(entityType.ClrType).HasQueryFilter(filter);
+        }
+        base.OnModelCreating(modelBuilder);
+    }
 }
