@@ -15,7 +15,4 @@ public class RecipePointsAndCommentsReadDto
     
     public int RecipeId { get; set; }
     
-    public UserReadDto? User { get; set; } 
-    
-    public RecipeReadDto? Recipe { get; set; }
 }
