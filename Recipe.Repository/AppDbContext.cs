@@ -12,7 +12,9 @@ public class AppDbContext : DbContext
     public DbSet<Category> Categories { get; set; } = null!;
     public DbSet<Step> Steps { get; set; } = null!;
     public DbSet<FavoriteRecipes> FavoriteRecipes { get; set; } = null!;
-    public RecipePointsAndComments RecipePointsAndComments { get; set; } = null!;
+    public DbSet<RecipePointsAndComments> RecipePointsAndComments { get; set; } = null!;
+    public DbSet<UserCredentials> UserCredentials { get; set; } = null!;
+    public DbSet<Tokens> Tokens { get; set; } = null!;
     
     public AppDbContext()
     {

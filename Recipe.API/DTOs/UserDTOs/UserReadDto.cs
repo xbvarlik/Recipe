@@ -12,8 +12,6 @@ public class UserReadDto
     
     public string Email { get; set; } = null!;
     
-    public string Password { get; set; } = null!;
-    
     public int Age { get; set; }
     
     public bool Gender { get; set; }

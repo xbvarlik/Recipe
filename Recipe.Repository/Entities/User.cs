@@ -8,13 +8,11 @@ public class User : BaseEntity
     
     public string LastName { get; set; } = null!;
     
-    public string Email { get; set; } = null!;
-    
-    public string Password { get; set; } = null!;
-    
     public int Age { get; set; }
     
     public bool Gender { get; set; }
+
+    public UserCredentials UserCredentials { get; set; } = null!;
     
     public virtual ICollection<FavoriteRecipes>? FavoriteRecipes { get; set; } 
     

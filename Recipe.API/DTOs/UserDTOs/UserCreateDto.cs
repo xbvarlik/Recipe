@@ -1,4 +1,6 @@
-﻿namespace Recipe.API.DTOs.UserDTOs;
+﻿using Recipe.API.DTOs.UserCredentialsDTOs;
+
+namespace Recipe.API.DTOs.UserDTOs;
 
 public class UserCreateDto
 {
@@ -6,9 +8,7 @@ public class UserCreateDto
     
     public string LastName { get; set; } = null!;
     
-    public string Email { get; set; } = null!;
-    
-    public string Password { get; set; } = null!;
+    public UserCredentialsCreateDto UserCredentials { get; set; } = null!;
     
     public int Age { get; set; }
     

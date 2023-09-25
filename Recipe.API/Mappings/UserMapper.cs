@@ -11,8 +11,7 @@ public class UserMapper : IBaseMapper<User, UserReadDto, UserCreateDto, UserUpda
         {
             FirstName = dto.FirstName,
             LastName = dto.LastName,
-            Email = dto.Email,
-            Password = dto.Password,
+            UserCredentials = new UserCredentialsMapper().ToEntity(dto.UserCredentials),
             Age = dto.Age,
             Gender = dto.Gender
         };
@@ -22,8 +21,8 @@ public class UserMapper : IBaseMapper<User, UserReadDto, UserCreateDto, UserUpda
     {
         entity.FirstName = dto.FirstName ?? entity.FirstName;
         entity.LastName = dto.LastName ?? entity.LastName;
-        entity.Email = dto.Email ?? entity.Email;
-        entity.Password = dto.Password ?? entity.Password;
+        entity.UserCredentials = dto.UserCredentials == null ? 
+            entity.UserCredentials : new UserCredentialsMapper().ToEntity(dto.UserCredentials, entity.UserCredentials);
         entity.Age = dto.Age ?? entity.Age;
         entity.Gender = dto.Gender ?? entity.Gender;
 
@@ -36,8 +35,7 @@ public class UserMapper : IBaseMapper<User, UserReadDto, UserCreateDto, UserUpda
         {
             FirstName = entity.FirstName,
             LastName = entity.LastName,
-            Email = entity.Email,
-            Password = entity.Password,
+            Email = entity.UserCredentials.Email,
             Age = entity.Age,
             Gender = entity.Gender,
             FavoriteRecipes = entity.FavoriteRecipes?.Select(x => 
