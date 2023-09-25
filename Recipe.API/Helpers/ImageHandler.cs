@@ -2,15 +2,22 @@
 
 public static class ImageHandler
 {
-    public static string? SaveImageToLocalStorage(byte[]? byteImage, string path)
+    public static string? SaveImageToLocalStorage(IFormFile? imageFile, string path)
     {
-        if (byteImage == null) return null;
+        if (imageFile == null) return null;
+        
+        byte[] byteArray;
+    
+        using (var binaryReader = new BinaryReader(imageFile.OpenReadStream()))
+        {
+            byteArray = binaryReader.ReadBytes((int)imageFile.Length);
+        }
         
         // Converting image to base64 string.
-        var base64Image = Convert.ToBase64String(byteImage);
-        var base64ImageArray = base64Image.Split(',');
-        var imageExtension = base64ImageArray[0].Split('/')[1].Split(';')[0];
-        var image = base64ImageArray[1];
+        var base64Image = Convert.ToBase64String(byteArray);
+
+        var imageExtension = "jpeg";
+        var image = base64Image;
         
         // Creating image name.
         var imageName = Guid.NewGuid().ToString() + "." + imageExtension;

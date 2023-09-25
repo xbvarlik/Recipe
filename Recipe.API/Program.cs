@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
+    // transfer this to bootstrapper
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
 
 });

@@ -40,7 +40,7 @@ public class RecipeController : BaseController
     }
     
     [HttpPost]
-    public async Task<IActionResult> CreateAsync([FromBody] RecipeCreateDto dto)
+    public async Task<IActionResult> CreateAsync([FromForm] RecipeCreateDto dto)
     {
         var createdEntity = await _service.CreateAsync(dto);
         var responseDto = ResponseDto<RecipeReadDto>.Success(201, createdEntity);

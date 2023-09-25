@@ -6,7 +6,7 @@ public class RecipeCreateDto
 {
     public string Name { get; set; } = null!;
     
-    public byte[]? Image { get; set; }
+    public IFormFile? Image { get; set; }
     
     public int UserId { get; set; } 
     

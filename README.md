@@ -4,7 +4,7 @@
 
 ### Issues 
 
-- IsDeleted property not working correctly
+- Naming in filter
 
 ### Features
 
