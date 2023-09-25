@@ -4,11 +4,7 @@
 
 ### Issues 
 
-- GetAll method filter requirements
 - IsDeleted property not working correctly
-- RecipeDetails field is unnecessary
-- Error in StepMapper and related IngredientMapper - smt returns null
-- Points and comments dtos contain unnecessary fields
 
 ### Features
 

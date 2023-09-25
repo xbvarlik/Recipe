@@ -6,13 +6,10 @@ public class RecipeCreateDto
 {
     public string Name { get; set; } = null!;
     
-    public string RecipeDetails { get; set; } = null!;
-    
     public byte[]? Image { get; set; }
     
     public int UserId { get; set; } 
     
     public int CategoryId { get; set; }
     
-    public ICollection<StepCreateDto>? Steps { get; set; }  
 }

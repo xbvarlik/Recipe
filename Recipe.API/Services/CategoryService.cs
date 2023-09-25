@@ -20,21 +20,26 @@ public class CategoryService : GenericService<Category, CategoryReadDto, Categor
         if (filter != null)
         {
             return await _context.Categories
-                .Include(x => x.Recipes)
+                .Where(x => !x.IsDeleted)
+                .Include(x => x.Recipes.Where(y => !y.IsDeleted))
                 .Where(x => x.Name.Contains(filter))
                 .AsNoTracking().ToListAsync();
         }
         
         return await _context.Categories
-            .Include(x => x.Recipes)
+            .Where(x => !x.IsDeleted)
+            .Include(x => x.Recipes.Where(y => !y.IsDeleted))
             .AsNoTracking().ToListAsync();
     }
 
     public override async Task<Category> GetByIdAsync(int id)
     {
         var entity = await _context.Categories
-            .Include(x=>x.Recipes)
+            .Where(x => !x.IsDeleted)
+            .Include(x => x.Recipes.Where(y => !y.IsDeleted))           
             .FirstOrDefaultAsync(x=>x.Id == id);
+
+        
         
         if (entity == null) throw new KeyNotFoundException($"Entity not found with id: {id}");
         

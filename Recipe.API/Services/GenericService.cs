@@ -22,12 +22,12 @@ public class GenericService<TEntity, TReadDto, TCreateDto, TUpdateDto>
     
     public virtual async Task<IEnumerable<TEntity>> GetAllAsync(string? filter = null)
     {
-        return await _context.Set<TEntity>().AsNoTracking().ToListAsync();
+        return await _context.Set<TEntity>().Where(x => !x.IsDeleted).AsNoTracking().ToListAsync();
     }
     
     public virtual async Task<TEntity> GetByIdAsync(int id)
     {
-        var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(x => x.Id == id);
+        var entity = await _context.Set<TEntity>().Where(x => !x.IsDeleted).FirstOrDefaultAsync(x => x.Id == id);
         if (entity == null) throw new KeyNotFoundException($"Entity not found with: id {id}");
         return entity;
     }

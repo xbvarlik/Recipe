@@ -19,25 +19,28 @@ public class UserService : GenericService<User, UserReadDto, UserCreateDto, User
         if (filter != null)
         {
             return await _context.Users
-                .Include(x => x.FavoriteRecipes)
-                .Include(x => x.Recipes)
-                .Include(x => x.RecipePointsAndComments)
+                .Where(x => !x.IsDeleted)
+                .Include(x => x.FavoriteRecipes.Where(fr => !fr.IsDeleted))
+                .Include(x => x.Recipes.Where(r => !r.IsDeleted))
+                .Include(x => x.RecipePointsAndComments.Where(rpc => !rpc.IsDeleted))
                 .Where(x => x.FirstName.Contains(filter) || x.LastName.Contains(filter))
                 .ToListAsync();
         }
         return await _context.Users
-            .Include(x => x.FavoriteRecipes)
-            .Include(x => x.Recipes)
-            .Include(x => x.RecipePointsAndComments)
+            .Where(x => !x.IsDeleted)
+            .Include(x => x.FavoriteRecipes.Where(fr => !fr.IsDeleted))
+            .Include(x => x.Recipes.Where(r => !r.IsDeleted))
+            .Include(x => x.RecipePointsAndComments.Where(rpc => !rpc.IsDeleted))
             .ToListAsync();
     }
 
     public override async Task<User> GetByIdAsync(int id)
     {
         var entity = await _context.Users
-            .Include(x => x.FavoriteRecipes)
-            .Include(x => x.Recipes)
-            .Include(x => x.RecipePointsAndComments)
+            .Where(x => !x.IsDeleted)
+            .Include(x => x.FavoriteRecipes.Where(fr => !fr.IsDeleted))
+            .Include(x => x.Recipes.Where(r => !r.IsDeleted))
+            .Include(x => x.RecipePointsAndComments.Where(rpc => !rpc.IsDeleted))
             .FirstOrDefaultAsync(x => x.Id == id);
         
         if (entity == null) throw new KeyNotFoundException($"Entity not found with: id {id}");

@@ -20,16 +20,20 @@ public class StepService : GenericService<Step, StepReadDto, StepCreateDto, Step
         if (filter != null)
         {
             return await _context.Steps
+                .Where(x => !x.IsDeleted)
                 .Include(x => x.Ingredient)
                 .Where(x => x.Ingredient!.Name.Contains(filter))
                 .ToListAsync();
         }
-        return await _context.Steps.Include(x => x.Ingredient).ToListAsync();
+        return await _context.Steps
+            .Where(x => !x.IsDeleted)
+            .Include(x => x.Ingredient).ToListAsync();
     }
     
     public override async Task<Step> GetByIdAsync(int id)
     {
         var entity = await _context.Steps
+            .Where(x => !x.IsDeleted)
             .Include(x => x.Ingredient)
             .FirstOrDefaultAsync(x => x.Id == id);
         
