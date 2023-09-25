@@ -12,10 +12,12 @@ namespace Recipe.API.Services;
 public class TokenService
 {
     private readonly AppDbContext _context;
+    private readonly IConfiguration _configuration;
     
-    public TokenService(AppDbContext context)
+    public TokenService(AppDbContext context, IConfiguration configuration)
     {
         _context = context;
+        _configuration = configuration;
     }
     
     public async Task<string> CreateToken(User user)
@@ -24,8 +26,12 @@ public class TokenService
         {
             new Claim(ClaimTypes.Name, user.FirstName)
         };
-
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Constants.SecretKey));
+        
+        var secret = _configuration["SecretKey"];
+        
+        if(secret == null) throw new SecurityTokenException("Secret key is null");
+        
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
         var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
         var expirationDate = DateTime.Now.AddDays(1);
         var token = new JwtSecurityToken(claims: claims, expires: expirationDate, signingCredentials: signingCredentials);
