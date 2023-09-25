@@ -76,3 +76,7 @@ D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.API\obj\Debug\net7.0\refint\Recipe.API.
 D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.API\obj\Debug\net7.0\Recipe.API.pdb
 D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.API\obj\Debug\net7.0\Recipe.API.genruntimeconfig.cache
 D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.API\obj\Debug\net7.0\ref\Recipe.API.dll
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.API\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.API\bin\Debug\net7.0\Scrutor.dll
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.dll
+D:\Codes\Rider\UdemyEFCore\Recipe\Recipe.API\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll

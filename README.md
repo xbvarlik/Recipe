@@ -6,4 +6,5 @@ This branch contains authentication code until the end of implementation of the 
 
 ## TODO
 
-- Implement Token logic to Login/Logout functions.
+- Implement UserCredentialsService
+- Fix User Mapper
