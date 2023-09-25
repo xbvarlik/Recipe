@@ -20,29 +20,25 @@ public class RecipeService : GenericService<RecipeEntity, RecipeReadDto, RecipeC
         if (filter != null)
         {
             return await _context.Recipes
-                .Where(x => !x.IsDeleted)
-                .Include(x => x.Steps.Where(y => !y.IsDeleted))!
+                .Include(x => x.Steps)!
                 .ThenInclude(y => y.Ingredient)
-                .Include(x => x.RecipePointsAndComments.Where(z => !z.IsDeleted))
-                .Where(x => x.Name.Contains(filter))
+                .Include(x => x.RecipePointsAndComments)
                 .ToListAsync();
         }
         
         return await _context.Recipes
-            .Where(x => !x.IsDeleted)
-            .Include(x => x.Steps.Where(y => !y.IsDeleted))!
+            .Include(x => x.Steps)!
             .ThenInclude(y => y.Ingredient)
-            .Include(x => x.RecipePointsAndComments.Where(z => !z.IsDeleted))
+            .Include(x => x.RecipePointsAndComments)
             .ToListAsync();
     }
 
     public override async Task<RecipeEntity> GetByIdAsync(int id)
     {
         var entity = await _context.Recipes
-            .Where(x => !x.IsDeleted)
-            .Include(x => x.Steps.Where(y => !y.IsDeleted))!
+            .Include(x => x.Steps)!
             .ThenInclude(y => y.Ingredient)
-            .Include(x => x.RecipePointsAndComments.Where(z => !z.IsDeleted))
+            .Include(x => x.RecipePointsAndComments)
             .FirstOrDefaultAsync(x => x.Id == id);
         
         if (entity == null) throw new KeyNotFoundException($"Entity not found with: id {id}");
