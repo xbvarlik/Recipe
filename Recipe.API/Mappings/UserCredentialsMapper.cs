@@ -8,10 +8,14 @@ public class UserCredentialsMapper : IBaseMapper<UserCredentials, UserCredential
 {
     public UserCredentials ToEntity(UserCredentialsCreateDto dto)
     {
-        AuthHelpers.CreatePasswordHash(dto.Password, out var passwordHash, out var passwordSalt);
+        throw new NotImplementedException();
+    }
+    
+    public UserCredentials ToEntity(string email, byte[] passwordHash, byte[] passwordSalt)
+    {
         return new UserCredentials
         {
-            Email = dto.Email,
+            Email = email,
             PasswordHash = passwordHash,
             PasswordSalt = passwordSalt
         };
@@ -19,15 +23,18 @@ public class UserCredentialsMapper : IBaseMapper<UserCredentials, UserCredential
 
     public UserCredentials ToEntity(UserCredentialsUpdateDto dto, UserCredentials entity)
     {
-        AuthHelpers.CreatePasswordHash(dto.NewPassword, out var passwordHash, out var passwordSalt);
-        
-        entity.Email = dto.Email;
+        throw new NotImplementedException();
+    }
+    
+    public UserCredentials ToEntity(string email, byte[] passwordHash, byte[] passwordSalt, UserCredentials entity)
+    {
+        entity.Email = email;
         entity.PasswordHash = passwordHash;
         entity.PasswordSalt = passwordSalt;
 
         return entity;
     }
-
+    
     public UserCredentialsReadDto ToDto(UserCredentials entity)
     {
         return new UserCredentialsReadDto

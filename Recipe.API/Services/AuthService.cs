@@ -28,7 +28,10 @@ public class AuthService
     public async Task<UserReadDto> RegisterAsync(UserCreateDto dto)
     {
         var user = _userMapper.ToEntity(dto);
-        var userCredentials = _userCredentialsMapper.ToEntity(dto.UserCredentials);
+        
+        AuthHelpers.CreatePasswordHash(dto.UserCredentials.Password, out var passwordHash, out var passwordSalt);
+        
+        var userCredentials = _userCredentialsMapper.ToEntity(dto.UserCredentials.Email, passwordHash, passwordSalt);
         user.UserCredentials = userCredentials;
         await _context.Users.AddAsync(user);
         await _context.SaveChangesAsync();
@@ -65,9 +68,10 @@ public class AuthService
         if (!AuthHelpers.VerifyPasswordHash(dto.OldPassword, user.UserCredentials.PasswordHash,
                 user.UserCredentials.PasswordSalt))
             throw new InvalidCredentialException("Invalid old password");
-        //createpasswordhash
         
-        var userCredentials = _userCredentialsMapper.ToEntity(dto, user.UserCredentials);
+        AuthHelpers.CreatePasswordHash(dto.NewPassword, out var passwordHash, out var passwordSalt);
+        
+        var userCredentials = _userCredentialsMapper.ToEntity(dto.Email, passwordHash, passwordSalt, user.UserCredentials);
         user.UserCredentials = userCredentials;
         await _context.SaveChangesAsync();
         return _userMapper.ToDto(user);
