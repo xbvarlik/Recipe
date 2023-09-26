@@ -19,6 +19,7 @@ public class UserService : GenericService<User, UserReadDto, UserCreateDto, User
         if (filter != null)
         {
             return await _context.Users
+                .Include(x => x.UserCredentials)
                 .Include(x => x.FavoriteRecipes)
                 .Include(x => x.Recipes)
                 .Include(x => x.RecipePointsAndComments)
@@ -26,6 +27,7 @@ public class UserService : GenericService<User, UserReadDto, UserCreateDto, User
                 .ToListAsync();
         }
         return await _context.Users
+            .Include(x => x.UserCredentials)
             .Include(x => x.FavoriteRecipes)
             .Include(x => x.Recipes)
             .Include(x => x.RecipePointsAndComments)
@@ -35,6 +37,7 @@ public class UserService : GenericService<User, UserReadDto, UserCreateDto, User
     public override async Task<User> GetByIdAsync(int id)
     {
         var entity = await _context.Users
+            .Include(x => x.UserCredentials)
             .Include(x => x.FavoriteRecipes)
             .Include(x => x.Recipes)
             .Include(x => x.RecipePointsAndComments)

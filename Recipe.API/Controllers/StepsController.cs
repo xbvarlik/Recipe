@@ -22,9 +22,9 @@ public class StepsController : BaseController
     }
     
     [HttpGet]
-    public async Task<IActionResult> GetAllAsync([FromQuery] string? filter = null)
+    public async Task<IActionResult> GetAllAsync([FromQuery] string? ingredientNameFilter = null)
     {
-        var entities = await _service.GetAllAsync(filter);
+        var entities = await _service.GetAllAsync(ingredientNameFilter);
         var dtos = entities.Select(x => _mapper.ToDto(x));
         var response = ResponseDto<IEnumerable<StepReadDto>>.Success(200, dtos);
         

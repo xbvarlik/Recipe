@@ -22,9 +22,9 @@ public class RecipeController : BaseController
     }
     
     [HttpGet]
-    public async Task<IActionResult> GetAllAsync([FromQuery] string? filter = null)
+    public async Task<IActionResult> GetAllAsync([FromQuery] RecipeQueryFilterDto queryFilter)
     {
-        var entities = await _service.GetAllAsync(filter);
+        var entities = await _service.GetAllAsync(queryFilter);
         var dtos = entities.Select(x => _mapper.ToDto(x));
         var responseDto = ResponseDto<IEnumerable<RecipeReadDto>>.Success(200, dtos);
         

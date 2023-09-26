@@ -22,9 +22,9 @@ public class CategoryController : BaseController
     }
     
     [HttpGet]
-    public async Task<IActionResult> GetAllAsync([FromQuery] string? filter = null)
+    public async Task<IActionResult> GetAllAsync([FromQuery] string? nameFilter = null)
     {
-        var entities = await _service.GetAllAsync(filter);
+        var entities = await _service.GetAllAsync(nameFilter);
         var dtos = entities.Select(x => _mapper.ToDto(x));
         var responseDto = ResponseDto<IEnumerable<CategoryReadDto>>.Success(200, dtos);
         

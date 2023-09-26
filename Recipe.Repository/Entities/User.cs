@@ -11,7 +11,7 @@ public class User : BaseEntity
     public int Age { get; set; }
     
     public bool Gender { get; set; }
-
+    
     public UserCredentials UserCredentials { get; set; } = null!;
     
     public virtual ICollection<FavoriteRecipes>? FavoriteRecipes { get; set; } 

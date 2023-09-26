@@ -11,7 +11,6 @@ public class UserMapper : IBaseMapper<User, UserReadDto, UserCreateDto, UserUpda
         {
             FirstName = dto.FirstName,
             LastName = dto.LastName,
-            UserCredentials = new UserCredentialsMapper().ToEntity(dto.UserCredentials),
             Age = dto.Age,
             Gender = dto.Gender
         };
@@ -21,8 +20,6 @@ public class UserMapper : IBaseMapper<User, UserReadDto, UserCreateDto, UserUpda
     {
         entity.FirstName = dto.FirstName ?? entity.FirstName;
         entity.LastName = dto.LastName ?? entity.LastName;
-        entity.UserCredentials = dto.UserCredentials == null ? 
-            entity.UserCredentials : new UserCredentialsMapper().ToEntity(dto.UserCredentials, entity.UserCredentials);
         entity.Age = dto.Age ?? entity.Age;
         entity.Gender = dto.Gender ?? entity.Gender;
 

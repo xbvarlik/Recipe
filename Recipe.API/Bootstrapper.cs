@@ -69,7 +69,7 @@ public static class Bootstrapper
                 options.TokenValidationParameters = new()
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("SecretKey").Value)),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("SecretKey").Value!)),
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };

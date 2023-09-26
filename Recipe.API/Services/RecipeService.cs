@@ -15,19 +15,13 @@ public class RecipeService : GenericService<RecipeEntity, RecipeReadDto, RecipeC
         _context = context;
     }
 
-    public override async Task<IEnumerable<RecipeEntity>> GetAllAsync(string? filter = null)
+    public async Task<IEnumerable<RecipeEntity>> GetAllAsync(RecipeQueryFilterDto filter)
     {
-        if (filter != null)
-        {
-            return await _context.Recipes
-                .Include(x => x.Steps)!
-                .ThenInclude(y => y.Ingredient)
-                .Include(x => x.RecipePointsAndComments)
-                .OrderByDescending(x => x.UpdatedAt)
-                .ToListAsync();
-        }
+        var query = _context.Recipes.AsQueryable();
         
-        return await _context.Recipes
+        query = FilterHelpers.ApplyRecipeFilter(filter, query);
+        
+        return await query
             .Include(x => x.Steps)!
             .ThenInclude(y => y.Ingredient)
             .Include(x => x.RecipePointsAndComments)

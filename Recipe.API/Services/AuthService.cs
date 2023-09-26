@@ -27,14 +27,14 @@ public class AuthService
     
     public async Task<UserReadDto> RegisterAsync(UserCreateDto dto)
     {
-        var user = _userMapper.ToEntity(dto);
-        
         AuthHelpers.CreatePasswordHash(dto.UserCredentials.Password, out var passwordHash, out var passwordSalt);
-        
         var userCredentials = _userCredentialsMapper.ToEntity(dto.UserCredentials.Email, passwordHash, passwordSalt);
+        
+        var user = _userMapper.ToEntity(dto);
         user.UserCredentials = userCredentials;
         await _context.Users.AddAsync(user);
         await _context.SaveChangesAsync();
+        
         return _userMapper.ToDto(user);
     }
     
