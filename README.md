@@ -1,7 +1,6 @@
-# Recipe - Authentication Branch
+# Recipe 
 
 ## Description
 
 ## TODO
 
-- Create filterModel
