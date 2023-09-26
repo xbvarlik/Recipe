@@ -1,6 +1,6 @@
-﻿namespace Recipe.API.DTOs.AuthenticationDTOs;
+﻿namespace Recipe.API.DTOs.UserCredentialsDTOs;
 
-public class LoginDto
+public class UserCredentialsCreateDto
 {
     public string Email { get; set; } = null!;
     

@@ -1,26 +1,16 @@
-using Microsoft.EntityFrameworkCore;
 using Recipe.API;
-using Recipe.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-
-builder.Services.AddDbContext<AppDbContext>(x =>
-{
-    // transfer this to bootstrapper
-    x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
-
-});
-
+builder.Services.AddSwagger();
+builder.Services.AddSqlContext(builder.Configuration);
 builder.Services.AddServices();
 builder.Services.AddMapping();
+builder.Services.AddAuthenticationOptions(builder.Configuration);
 
 var app = builder.Build();
 
@@ -32,6 +22,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

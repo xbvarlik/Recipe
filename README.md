@@ -1,18 +1,10 @@
-# Recipe
+# Recipe - Authentication Branch
+
+## Description
+
+This branch contains authentication code until the end of implementation of the authentication system.
 
 ## TODO
 
-### Issues 
-
-- Naming in filter
-- Add more filters like CreatedBy etc.
-
-### Features
-
-- Authentication
-
-## Research 
-
-### Image Storage
-
-- Look at GridFS
+- Implement UserCredentialsService
+- Fix User Mapper

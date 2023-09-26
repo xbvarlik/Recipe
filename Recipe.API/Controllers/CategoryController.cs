@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Recipe.API.DTOs.CategoryDTOs;
 using Recipe.API.DTOs.CommunicationDTOs;
 using Recipe.API.Mappings;
@@ -8,6 +9,7 @@ namespace Recipe.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class CategoryController : BaseController
 {
     private readonly CategoryMapper _mapper;

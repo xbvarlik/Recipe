@@ -1,4 +1,6 @@
-﻿namespace Recipe.API.DTOs.UserDTOs;
+﻿using Recipe.API.DTOs.UserCredentialsDTOs;
+
+namespace Recipe.API.DTOs.UserDTOs;
 
 public class UserUpdateDto
 {
@@ -6,9 +8,7 @@ public class UserUpdateDto
     
     public string? LastName { get; set; } 
     
-    public string? Email { get; set; } 
-    
-    public string? Password { get; set; }
+    public UserCredentialsUpdateDto? UserCredentials { get; set; }
     
     public int? Age { get; set; }
     
