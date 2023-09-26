@@ -37,8 +37,8 @@ public class AuthController : BaseController
     [HttpPost("logout")]
     public async Task<IActionResult> LogoutAsync()
     {
-        string authorizationHeader = Request.Headers["Authorization"].ToString();
-        string? token = string.IsNullOrEmpty(authorizationHeader)
+        var authorizationHeader = Request.Headers["Authorization"].ToString();
+        var token = string.IsNullOrEmpty(authorizationHeader)
             ? null
             : authorizationHeader.Replace("Bearer ", string.Empty);
         
@@ -60,8 +60,10 @@ public class AuthController : BaseController
     [HttpDelete("delete-account")]
     public async Task<IActionResult> DeleteAccountAsync(UserCredentialsCreateDto dto)
     {
-        string? token = Request.Headers["Authorization"].ToString()?.Replace("Bearer ", string.Empty);
-
+        var authorizationHeader = Request.Headers["Authorization"].ToString();
+        var token = string.IsNullOrEmpty(authorizationHeader)
+            ? null
+            : authorizationHeader.Replace("Bearer ", string.Empty);
         if (token == null) throw new SecurityTokenException("Token not found");
         
         await _authService.DeleteAccountAsync(dto, token);

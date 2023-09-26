@@ -65,6 +65,7 @@ public class AuthService
         if (!AuthHelpers.VerifyPasswordHash(dto.OldPassword, user.UserCredentials.PasswordHash,
                 user.UserCredentials.PasswordSalt))
             throw new InvalidCredentialException("Invalid old password");
+        //createpasswordhash
         
         var userCredentials = _userCredentialsMapper.ToEntity(dto, user.UserCredentials);
         user.UserCredentials = userCredentials;
@@ -72,7 +73,7 @@ public class AuthService
         return _userMapper.ToDto(user);
     }
 
-    public async Task<UserReadDto> DeleteAccountAsync(UserCredentialsCreateDto dto, string token)
+    public async Task DeleteAccountAsync(UserCredentialsCreateDto dto, string token)
     {
         var user = await _context.Users
             .Include(x => x.UserCredentials)
@@ -88,12 +89,10 @@ public class AuthService
         
         _context.Users.Remove(user);
         await _context.SaveChangesAsync();
-        return _userMapper.ToDto(user);
     }
     
-    public async Task<NoContentDto> LogoutAsync(string token)
+    public async Task LogoutAsync(string token)
     {
         await _tokenService.RevokeToken(token);
-        return new NoContentDto();
     }
 }
