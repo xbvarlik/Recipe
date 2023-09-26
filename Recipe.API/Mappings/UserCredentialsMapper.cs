@@ -20,12 +20,12 @@ public class UserCredentialsMapper : IBaseMapper<UserCredentials, UserCredential
     public UserCredentials ToEntity(UserCredentialsUpdateDto dto, UserCredentials entity)
     {
         AuthHelpers.CreatePasswordHash(dto.NewPassword, out var passwordHash, out var passwordSalt);
-        return new UserCredentials
-        {
-            Email = dto.Email,
-            PasswordHash = passwordHash,
-            PasswordSalt = passwordSalt
-        };
+        
+        entity.Email = dto.Email;
+        entity.PasswordHash = passwordHash;
+        entity.PasswordSalt = passwordSalt;
+
+        return entity;
     }
 
     public UserCredentialsReadDto ToDto(UserCredentials entity)

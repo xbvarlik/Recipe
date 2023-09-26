@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Recipe.API.DTOs.CommunicationDTOs;
 using Recipe.API.DTOs.UserCredentialsDTOs;
@@ -32,17 +33,22 @@ public class AuthController : BaseController
         return CreateActionResult(ResponseDto<string>.Success(200, token));
     }
     
+    [Authorize]
     [HttpPost("logout")]
     public async Task<IActionResult> LogoutAsync()
     {
-        string? token = Request.Headers["Authorization"].ToString()?.Replace("Bearer ", string.Empty);
-
+        string authorizationHeader = Request.Headers["Authorization"].ToString();
+        string? token = string.IsNullOrEmpty(authorizationHeader)
+            ? null
+            : authorizationHeader.Replace("Bearer ", string.Empty);
+        
         if (token == null) throw new SecurityTokenException("Token not found");
         
         await _authService.LogoutAsync(token);
         return CreateActionResult(ResponseDto<NoContentDto>.Success(204));
     }
     
+    [Authorize]
     [HttpPut("change-password")]
     public async Task<IActionResult> ChangePasswordAsync(UserCredentialsUpdateDto dto)
     {
@@ -50,6 +56,7 @@ public class AuthController : BaseController
         return CreateActionResult(ResponseDto<UserReadDto>.Success(200, user));
     }
     
+    [Authorize]
     [HttpDelete("delete-account")]
     public async Task<IActionResult> DeleteAccountAsync(UserCredentialsCreateDto dto)
     {

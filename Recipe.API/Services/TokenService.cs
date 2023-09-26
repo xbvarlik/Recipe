@@ -55,6 +55,7 @@ public class TokenService
 
         if (tokenEntity == null) return;
         
+        tokenEntity.Status = false;
         _context.Tokens.Remove(tokenEntity);
         await _context.SaveChangesAsync();
     }
